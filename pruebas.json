@@ -1,0 +1,38 @@
+[
+  {
+    "nombre": "asdfasdf",
+    "autor": "asdfasdf",
+    "descripcion": "asdfasdf",
+    "asignatura": "Filosofia",
+    "etapa": "Primer-parcial",
+    "estado": "disponible",
+    "archivo": "asdfasdf.json"
+  },
+  {
+    "nombre": "Filosofia",
+    "autor": "Manuel",
+    "descripcion": "Examen de filosofia donde hablamos de Rene descartes",
+    "asignatura": "Filosofia",
+    "etapa": "Segundo-parcial",
+    "estado": "disponible",
+    "archivo": "Filosofia.json"
+  },
+  {
+    "nombre": "Programacion",
+    "autor": "Manuel",
+    "descripcion": "Examen de programacion etapa 4",
+    "asignatura": "Desarrollo Visual I",
+    "etapa": "Segundo-parcial",
+    "estado": "disponible",
+    "archivo": "Programacion.json"
+  },
+  {
+    "nombre": "asdf",
+    "autor": "asdf",
+    "descripcion": "asdf",
+    "asignatura": "Filosofia",
+    "etapa": "Primer-parcial",
+    "estado": "disponible",
+    "archivo": "asdf.json"
+  }
+]

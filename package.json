@@ -1,0 +1,32 @@
+{
+  "name": "examenes",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Manuel/Mario",
+  "license": "ISC",
+  "dependencies": {
+    "@codemirror/basic-setup": "^0.20.0",
+    "@codemirror/lang-javascript": "^6.2.4",
+    "@codemirror/view": "^6.38.0",
+    "@supabase/supabase-js": "^2.57.4",
+    "@types/node": "^22.13.11",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.14.5",
+    "nodemon": "^3.1.10",
+    "socket.io": "^4.8.1"
+  },
+  "description": "Pagina de examenes hecho para el grupo 417",
+  "devDependencies": {
+    "standard": "^17.1.2"
+  }
+}
