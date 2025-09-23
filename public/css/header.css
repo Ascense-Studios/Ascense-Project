@@ -1,0 +1,115 @@
+
+header {
+  background-color: #030e0fc2;
+  /* background-color: red; */
+  color: var(--color); 
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  transition: .5s;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(50px);
+  z-index: 10;
+}
+header section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.menu {
+  background-color: transparent;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: block;
+}
+.logo {
+  letter-spacing: -2px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 5px;
+  position: relative;
+}
+
+
+
+.nav-content {
+  margin: 0 50px 0 0;
+  /* width: 100%; */
+}
+.hidden-menu {
+  display: none;
+}
+.nav-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  /* background-color: red; */
+  position: fixed;
+}
+.nav-item {
+  background-color: #030e0fc2;
+  padding: 10px;
+  display: flex;
+  text-decoration: none;
+  color: white;
+  transition: .2s;
+  font-weight: bold;
+  width: 100%;
+
+}
+.nav-item:hover {
+  cursor: pointer;
+  color: #666464;
+}
+p {
+  color: #a5a4a4;
+  font-weight: bold;
+}
+
+/*EStilos globales para clase "content" y sus relaciones*/
+
+.content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 600px) {
+  .nav-content {display: flex;
+
+  }
+  .nav-bar{display: flex;
+    position: inherit;
+  flex-direction: row;
+}
+.nav-item {
+    background-color: transparent;
+
+}
+  .menu {
+    display: none;
+    /* color: red; */
+  }
+  
+
+  header {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+  }
+  .logo {
+
+    margin-left: 20px;
+  }
+}
+

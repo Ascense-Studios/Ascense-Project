@@ -1,0 +1,90 @@
+    body {
+        display: grid;
+        place-items: center;
+        background-color: #212123;
+        font-family: sans-serif;
+    }
+     h1 {
+        color: white;
+        display: flex;
+        letter-spacing: -5px;
+        align-items: center;
+        gap: 20px;
+        justify-content: space-around;
+     }
+    form {
+        display: flex;
+        background-color: #09090B;
+        flex-direction: column;
+        /* width: 90%; */
+        max-width: 380px;
+        margin: 0 auto;
+        border-radius: 10px;
+        box-shadow: 0 3px 5px black;
+        position: relative;
+        padding: 20px;
+    }
+
+    form>h2 {
+        text-align: left;
+        font-weight: bold;
+        color: #dbdbdb;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    form > p {
+        color: rgb(180, 180, 180);
+        margin: 0;
+        margin-bottom: 20px;
+    }
+
+    input {
+        width: 95%;
+        padding: 10px;
+        margin: 15px auto;
+        border-radius: 5px;
+        background-color: transparent;
+        border: 1px solid #ffffff21;
+        color: white;
+        outline: none;
+    }
+
+    label {
+        font-size: small;
+        color: white;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+    }
+
+    label>a {
+        padding: 0;
+        color: white;
+        /* text-decoration: none; */
+        margin: 0;
+    }
+
+
+    button {
+        background-color: white;
+        border: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 100%;
+        margin: 0 auto;
+        border-radius: 5px;
+        color: black;
+        font-weight: bold;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        cursor: pointer;
+        background-color: #585858;
+    }
+
+
+    

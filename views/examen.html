@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/faviconASCENSE.png" type="image/x-icon" />
+    <title>ASCENSE | EXAMENES</title>
+    <link rel="stylesheet" href="/css/examen.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <script src="https://kit.fontawesome.com/6788e71a64.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- ======= SIDEBAR ======= -->
+    <aside class="sidebar">
+        <section class="header-sidebar">
+            <img src="./images/faviconASCENSE.png" alt="Logotipo de ascense">
+            <h1>ASCENSE</h1>
+        </section>
+        <hr>
+        <nav>
+            <p>Principal</p>
+            <ul>
+                <li><a href="/" class="sidebar-option active"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                <li><a href="/comunidad" class="sidebar-option"><i class="fa-solid fa-envelope"></i> Mensajes</a></li>
+                <li><a href="/recursos" class="sidebar-option"><i class="fa-solid fa-box-open"></i> Recursos</a></li>
+                <li><a href="/cursos" class="sidebar-option "><i class="fa-solid fa-graduation-cap"></i> Cursos</a></li>
+                <li><a href="/editor" class="sidebar-option "><i class="fas fa-code"></i> Editor de codigo</a></li>
+            </ul>
+        </nav>
+        <hr>
+        <nav>
+            <p>Cuenta</p>
+            <ul>
+                <li><a href="/configuracion" class="sidebar-option"><i class="fa-solid fa-gear"></i> Configuracion</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- ======= CONTENEDOR PRINCIPAL ======= -->
+    <div class="main-container">
+        <div class="top-header">
+            <span class="breadcrumb"><a href="./dashboardExamen.html">Panel ascense</a> > <a
+                    href="#">Exámenes</a></span>
+            <div class="user-profile">
+                <i class="fa-solid fa-user-circle"></i>
+            </div>
+        </div>
+
+        <header>
+            <section>
+                <h1 class="logo">ASCENSE</h1>
+            </section>
+        </header>
+
+        <main class="main">
+            <div class="exam-header">
+                <div>
+                    <h2>Contestar examen</h2>
+                    <p id="exam-name">Cargando examen...</p>
+                </div>
+                <span id="contador">0 / 0</span>
+            </div>
+
+            <div class="exam-container">
+                <div class="exam-content">
+                    <!-- ======= ZONA DINÁMICA DE PREGUNTAS ======= -->
+                    <div class="exam-text" id="pregunta-contenedor"></div>
+
+                    <!-- <div class="exam-image">
+            <img src="./images/manuel.png" alt="Ejemplo de pseudocódigo">
+            <p class="image-caption">Ejemplo básico de pseudocódigo en un algoritmo simple.</p>
+        </div> -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/JS/sidebar.js"></script>
+    <script>
+        const examId = new URLSearchParams(window.location.search).get("id");
+
+        const contenedor = document.getElementById("pregunta-contenedor");
+        const contador = document.getElementById("contador");
+        const examName = document.getElementById("exam-name");
+
+        let preguntas = [];
+        let indiceActual = 0;
+        let respuestasUsuario = {}; // Guarda la respuesta seleccionada por cada pregunta
+
+        // Funcion para desordenar las opciones de repuestas
+        function shuffle(array) {
+            let copia = [...array];
+            for (let i = copia.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copia[i], copia[j]] = [copia[j], copia[i]];
+            }
+            return copia;
+        }
+
+        // Renderizar la pregunta actual
+        function mostrarPregunta() {
+  const pregunta = preguntas[indiceActual];
+  const opciones = shuffle(pregunta.options);
+
+  contador.textContent = `${indiceActual + 1} / ${preguntas.length}`;
+  examName.textContent = `Examen ID: ${pregunta.exam_id}`;
+
+  contenedor.innerHTML = `
+    <div class="pregunta-card">
+      <h2 class="pregunta-texto">${pregunta.question}</h2>
+      <p class="pregunta-descripcion">Selecciona la opción correcta:</p>
+      <div class="opciones">
+        ${opciones.map(opcion => `
+          <button class="option-btn" 
+            data-id="${pregunta.id}" 
+            data-value="${opcion}">
+            ${opcion}
+          </button>
+        `).join("")}
+      </div>
+    </div>
+  `;
+
+  // Manejo de selección de opción
+  document.querySelectorAll(".option-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const preguntaId = e.target.dataset.id;
+      const valor = e.target.dataset.value;
+
+      // Guardamos respuesta
+      respuestasUsuario[preguntaId] = valor;
+
+      // Marcar visualmente correcta/incorrecta
+      if (valor === pregunta.answer) {
+        e.target.classList.add("correcta");
+      } else {
+        e.target.classList.add("incorrecta");
+        // También mostrar cuál era la correcta
+        document.querySelectorAll(`[data-id='${preguntaId}']`).forEach(b => {
+          if (b.dataset.value === pregunta.answer) {
+            b.classList.add("correcta");
+          }
+        });
+      }
+
+      // Desactivar botones para que no cambie varias veces
+      document.querySelectorAll(".option-btn").forEach(b => b.disabled = true);
+
+      // Pasar a la siguiente pregunta automáticamente
+      setTimeout(() => {
+        if (indiceActual === preguntas.length - 1) {
+          terminarExamen();
+        } else {
+          indiceActual++;
+          mostrarPregunta();
+        }
+      }, 1000); // ⏳ Espera 1 segundo antes de pasar
+    });
+  });
+}
+
+
+        // Terminar examen y mostrar resultados
+        function terminarExamen() {
+            let correctas = 0;
+
+            preguntas.forEach(p => {
+                if (respuestasUsuario[p.id] === p.answer) {
+                    correctas++;
+                }
+            });
+
+            contenedor.innerHTML = `
+    <div class="resultado-examen">
+        <h2>Examen finalizado</h2>
+        <p class="score">Tu resultado: <strong>${correctas} / ${preguntas.length}</strong></p>
+        <ul class="lista-resultados">
+            ${preguntas.map(p => `
+                <li class="resultado-item">
+                    <h3>${p.question}</h3>
+                    <p>Tu respuesta: 
+                        <span class="respuesta ${respuestasUsuario[p.id] === p.answer ? "correcta" : "incorrecta"}">
+                            ${respuestasUsuario[p.id] || "No contestada"}
+                        </span>
+                    </p>
+                    <p>Respuesta correcta: 
+                        <span class="respuesta correcta">${p.answer}</span>
+                    </p>
+                </li>
+            `).join("")}
+        </ul>
+        <button class="btn-reiniciar" onclick="window.location.reload()">Reiniciar</button>
+        <button class="btn-reiniciar" onclick="window.location.href='/examenes'">Más exámenes</button>
+
+    </div>
+`;
+
+            contador.textContent = `${preguntas.length} / ${preguntas.length}`;
+        }
+
+        // Cargar preguntas desde el backend
+        async function cargarExamen(examId) {
+            try {
+                const res = await fetch(`https://ascense.net/questions/${examId}`);
+                preguntas = await res.json();
+
+                if (preguntas.length === 0) {
+                    contenedor.innerHTML = "<p>No hay preguntas disponibles.</p>";
+                    contador.textContent = "0 / 0";
+                    return;
+                }
+
+                indiceActual = 0;
+                mostrarPregunta();
+            } catch (error) {
+                console.error("Error al cargar examen:", error);
+                contenedor.innerHTML = "<p>Error al cargar examen.</p>";
+            }
+        }
+        
+        cargarExamen(examId);
+
+        
+            
+        
+    </script>
+
+</body>
+
+</html>

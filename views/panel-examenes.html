@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Panel de Exámenes</title>
+        <link rel="stylesheet" href="/css/panel.css" />
+        <link rel="stylesheet" href="../public/css/panel.css" />
+    <script src="https://kit.fontawesome.com/6788e71a64.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <burron class="panel-section" onclick="
+                localStorage.clear()
+                alert('Haz cerrado sesion')
+                window.location.href='/'
+                ">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <p>Cerrar sesión</p>
+            </burron>
+
+            <a class="panel-section" href="/examenes">
+                <i class="fa-solid fa-paper-plane"></i>
+                <p>Exámenes</p>
+            </a>
+            <a class="panel-section" href="/comunidad">
+                <i class="fa-solid fa-users"></i>
+                <p>Comunidad</p>
+            </a>
+            <a class="panel-section" href="/admin">
+                <i class="fa-solid fa-lock"></i>
+                <p>Admin</p>
+            </a>
+
+            </header>
+        <h2 id="contador"></h2>
+        <div class="container">
+            <div id="exam-form" class="form-container">
+                <h2 class="h2-form" translate="no">ASCENSE</h2>
+                <details>
+                    <summary><i class="fa-solid fa-plus"></i> Instrucciones</summary>
+                        <ul>
+                            <li class="instruccion"><strong class="instruccion-strong">Crear un nuevo examen:</strong>
+                                <ul>
+                                    <li>Escribe el nombre del examen en el campo correspondiente. Usa <strong>SÓLO letras o números, sin espacios</strong>.</li>
+                                    <li>Haz clic en <em>"Crear Examen"</em>.</li>
+                                </ul>
+                            </li>
+                            <li class="instruccion"><strong class="instruccion-strong">Agregar preguntas:</strong>
+                                <ul>
+                                    <li>Completa los campos con la pregunta, la respuesta correcta y tres incorrectas.</li>
+                                    <li>Haz clic en <em>"Agregar Pregunta"</em> para guardarla temporalmente.</li>
+                                </ul>
+                            </li>
+                            <li class="instruccion"><strong class="instruccion-strong">Finalizar examen:</strong>
+                                <ul>
+                                    <li>Cuando hayas agregado todas las preguntas, haz clic en <em>"Finalizar Examen"</em> para guardar todo.</li>
+                                </ul>
+                            </li>
+                            <li class="instruccion"><strong class="instruccion-strong">Vista previa:</strong>
+                                <ul>
+                                    <li>Las preguntas que agregues se mostrarán abajo para que puedas revisarlas antes de finalizar.</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                </details>
+                <form id="create-exam-form">
+                    <input
+                        class="input-exam"
+                        type="text"
+                        id="name"
+                        placeholder="Nombre del examen"
+                        required
+                    />
+                    <input
+                        class="input-exam"
+                        type="text"
+                        id="author"
+                        placeholder="Author del examen"
+                        required
+                    />
+                    <input
+                        class="input-exam"
+                        type="text"
+                        id="description"
+                        placeholder="Descripcion del examen"
+                        required
+                    />
+                    <input
+                        class="input-exam"
+                        type="datetime-local"
+                        id="deadline"
+                        placeholder="Fecha limite del examen"
+                        required
+                    />
+                    <!-- <label for=""></label>
+                    <select name="tags" id="select-option-asignatura">
+                        <optgroup label="Asignatura">
+                            <option value="selecciona">Selecciona una asignatura</option>
+                            <option value="Filosofia">Filosofía</option>
+                            <option value="Base de datos I">Base de datos I</option>
+                            <option value="Biologia en la salud">Biologia en la salud</option>
+                            <option value="Desarrollo Visual I">Desarrollo Visual I</option>
+                            <option value="Desarrollo Web I">Desarrollo Web I</option>
+                            <option value="Fundamentos de la solucion de conflictos">Fundamentos de la solución de conflictos</option>
+                            <option value="Introduccion a las actividades empresariales">Introducción a las actividades empresariales</option>
+                            <option value="La ciencia del movimiento">La ciencia del movimiento</option>
+                            <option value="Mi conexion al mundo en otra lengua II">Mi conexion al mundo en otra lengua II</option>
+                            <option value="Probabilidad y estadistica">Probabilidad y estadistica</option>
+                            <option value="Robotica">Robotica</option>
+                        </optgroup>
+                    </select>
+                    <select name="etapa" id="select-option-etapa">
+                        <optgroup label="Tipo de examen">
+                            <option value="selecciona">Selecciona una etapa</option>
+                            <option value="Primer-parcial">Primer parcial</option>
+                            <option value="Medio-termino">Medio termino</option>
+                            <option value="Segundo-parcial">Segundo parcial</option>
+                            <option value="Global">Global</option>
+                        </optgroup>
+                     </select>
+                     <select name="etado" id="select-option-estado">
+                        <optgroup label="Estado">
+                            <option value="selecciona">Selecciona una opción</option>
+                            <option value="disponible">Disponible</option>
+                            <option value="no-disponible">No disponible</option>
+                        </optgroup>
+                      </select> -->
+                    <button type="submit" class="btn btn-crear">Crear Examen</button>
+                </form>
+            </div>
+
+            <div
+                id="question-form"
+                class="form-container"
+                style="display: none;"
+            >
+                <h2 class="h2-form">Agregar Pregunta</h2>
+                <form id="add-question-form">
+                    <input
+                        type="text"
+                        id="question-text"
+                        placeholder="Pregunta"
+                        required
+                    />
+                    <input
+                        type="text"
+                        id="correct-answer"
+                        placeholder="Respuesta correcta"
+                        required
+                    />
+                    <input
+                        type="text"
+                        id="wrong-answer1"
+                        placeholder="Respuesta incorrecta 1"
+                        required
+                    />
+                    <input
+                        type="text"
+                        id="wrong-answer2"
+                        placeholder="Respuesta incorrecta 2"
+                        required
+                    />
+                    <input
+                        type="text"
+                        id="wrong-answer3"
+                        placeholder="Respuesta incorrecta 3"
+                        required
+                    />
+                    <button type="submit" id="btn-add-question" class="btn ">Agregar Pregunta</button>
+                </form>
+                <button id="finish-exam" class="btn-finish">
+                    Finalizar Examen
+                </button>
+            </div>
+
+            <div id="questions-preview" class="questions-container"></div>
+        </div>
+        <script src="https://unpkg.com/@supabase/supabase-js@2.44.4/dist/umd/supabase.js"></script>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/JS/panel.js"></script>
+    </body>
+</html>

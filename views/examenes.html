@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCENSE | EXAMENES</title>
+    <script src="https://kit.fontawesome.com/6788e71a64.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/examenes.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <style>
+        /* ===== Skeleton Loader para exam cards ===== */
+        .skeleton-card {
+            background: #070707;
+            border-radius: 15px;
+            padding: 15px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.123);
+        }
+
+        .skeleton-card::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -150px;
+            height: 100%;
+            width: 150px;
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.1) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                left: -150px;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Skeleton interno: títulos y detalles */
+        .skeleton-title,
+        .skeleton-course,
+        .skeleton-detail,
+        .skeleton-stat {
+            background-color: #141618;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .skeleton-title {
+            width: 60%;
+            height: 20px;
+        }
+
+        .skeleton-course {
+            width: 40%;
+            height: 14px;
+        }
+
+        .skeleton-detail {
+            width: 100%;
+            height: 30px;
+        }
+
+        .skeleton-stat {
+            width: 30%;
+            height: 40px;
+            display: inline-block;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <section class="header-sidebar">
+            <img src="/images/faviconASCENSE.png" alt="Logotipo de ascense">
+            <h1>ASCENSE</h1>
+        </section>
+        <hr>
+        <nav>
+            <p>Principal</p>
+            <ul>
+                <li><a href="/" class="sidebar-option active"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                <li><a href="/comunidad" class="sidebar-option"><i class="fa-solid fa-envelope"></i> Mensajes</a></li>
+                <li><a href="/recursos" class="sidebar-option"><i class="fa-solid fa-box-open"></i> Recursos</a></li>
+                <li><a href="/cursos" class="sidebar-option"><i class="fa-solid fa-graduation-cap"></i> Cursos</a></li>
+                <li><a href="./editorCodigo.html" class="sidebar-option "><i class="fas fa-code"></i> Editor de
+                        codigo</a></li>
+
+            </ul>
+        </nav>
+        <hr>
+        <nav>
+            <p>Grado</p>
+            <ul>
+                <li><a href="#" class="sidebar-option"><i class="fa-solid fa-language"></i> Bilingüe</a></li>
+                <li><a href="#" class="sidebar-option"><i class="fa-solid fa-earth-americas"></i> General</a></li>
+                <li><a href="#" class="sidebar-option"><i class="fa-solid fa-laptop-code"></i> Sistemas C.</a></li>
+            </ul>
+        </nav>
+        <hr>
+        <nav>
+            <p>Cursos</p>
+            <ul>
+                <li><a href="#" class="sidebar-option"><i class="fa-brands fa-python"></i> Python</a></li>
+                <li><a href="#" class="sidebar-option"><i class="fa-brands fa-js"></i> JavaScript</a></li>
+                <li><a href="#" class="sidebar-option"><i class="fa-brands fa-html5"></i> HTML</a></li>
+                <li><a href="#" class="sidebar-option"><i class="fa-brands fa-css3-alt"></i> CSS</a></li>
+            </ul>
+        </nav>
+        <hr>
+        <nav>
+            <p>Cuenta</p>
+            <ul>
+                <li><a href="#" class="sidebar-option"><i class="fa-solid fa-gear"></i> Configuracion</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="main-container">
+        <div class="top-header">
+            <span class="breadcrumb">Panel ascense > General</span>
+            <div class="user-profile">
+                <i class="fa-solid fa-user-circle"></i>
+            </div>
+        </div>
+
+        <header>
+            <section>
+                <h1 class="logo">ASCENSE</h1>
+                <!-- Icono menu -->
+                <button class="menu" hidden><i class="fa-solid fa-bars"></i></button>
+            </section>
+
+            <nav class="nav-content hidden-menu">
+                <ul class="nav-bar">
+                    <li><a class="nav-item" href="./dashboardPublic.html">Examenes</a></li>
+                    <li><a class="nav-item" href="./dashboardExamen.html">Comunidad</a></li>
+                    <li><a class="nav-item" href="/recursos">Recursos</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main class="main">
+            <!-- <section class="info-cards-section">
+                <div class="info-card">
+                    <div class="">
+                        <p>Examenes completados</p>
+                        <span class="exams-completes">24</span>
+                    </div>
+                    Icono de la carta. Font awesome
+                    <i class="fa-solid fa-list"></i>
+                </div>
+                <div class="info-card">
+                    <div class="">
+                        <p>Promedio general</p>
+                        <span class="exams-average">88%</span>
+                    </div>
+                    <i class="fa-solid fa-percent"></i>
+                </div>
+                <div class="info-card">
+                    <div class="">
+                        <p>Tiempo total</p>
+                        <span>45 H</span>
+                    </div>
+                    Time
+                    <i class="fa-solid fa-clock"></i>
+
+                </div>
+            </section> -->
+
+            <section class="exams-section">
+                <!--  -->
+                <div class="exams-header">
+                    <div class="text-content">
+                        <h2>Exámenes disponibles</h2>
+                        <p>Mejora tu puntuación resolviendo exámenes hechos por la comunidad.</p>
+                    </div>
+                    <!-- <span class="exam-count">+ 50k exámenes disponibles</span> -->
+                </div>
+
+                <ul class="exams-list">
+                    <div class="skeleton-card">
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-small"></div>
+                    </div>
+
+                    <div class="skeleton-card">
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-small"></div>
+                    </div>
+
+                    <div class="skeleton-card">
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-small"></div>
+                    </div>
+                </ul>
+            </section>
+        </main>
+    </div>
+<script src="https://unpkg.com/@supabase/supabase-js@2.44.4/dist/umd/supabase.js"></script>
+    <script src="/JS/sidebar.js"></script>
+    <script>
+        const supabaseUrl = "https://wjvrpbhuopxxbqxnhetq.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndqdnJwYmh1b3B4eGJxeG5oZXRxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc5MDI3OTMsImV4cCI6MjA3MzQ3ODc5M30.aeDLetdhkiRKrl1n8rzfyUVA55iTx9XhpPWCE3JV_2Y"; 
+  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+  async function getQuestionExam(examId) {
+  try {
+    const { data, error } = await supabase
+      .from("questions")
+      .select("*")
+      .eq("exam_id", examId); // asumimos que en tu tabla "questions" hay una columna "exam_id"
+
+    if (error) throw error;
+
+    return data.length; // retorna el número de preguntas
+  } catch (error) {
+    console.error("Error al obtener preguntas del examen:", error.message);
+    return 0; // si falla, retornamos 0
+  }
+}
+
+        function formatDeadline(deadline) {
+            const date = new Date(deadline);
+            return date.toLocaleString("es-MX", {
+                day: "2-digit",
+                month: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+            });
+        }
+
+        function getRemainingTime(deadline) {
+            const now = new Date();
+            const end = new Date(deadline);
+            const diff = end - now; // diferencia en ms
+
+            if (diff <= 0) return { text: "Venció", expired: true };
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+            let text = "Faltan ";
+            if (days > 0) text += `${days} día(s) `;
+            if (hours > 0) text += `${hours} hora(s) `;
+            if (minutes > 0) text += `${minutes} minuto(s)`;
+
+            return { text: text.trim(), expired: false };
+        }
+
+        async function obtenerPreguntas() {
+  try {
+    const { data, error } = await supabase.from("exams").select("*");
+    if (error) throw error;
+
+    const contenedorExamenes = document.querySelector(".exams-list");
+    contenedorExamenes.innerHTML = "";
+
+    // 🔹 usamos for...of porque forEach no soporta await
+    for (const element of data) {
+      const card = document.createElement("li");
+      card.classList.add("exam-card");
+
+      const remaining = getRemainingTime(element.deadline);
+
+      // 🔹 Obtener cantidad de preguntas desde backend
+      const totalPreguntas = await getQuestionExam(element.id);
+      const totalPuntos = totalPreguntas * (element.pointsPerQuestion || 1);
+
+      card.innerHTML = `
+        <div class="exam-header">
+          <div class="exam-title">
+            <h3>${element.name}</h3>
+            <div class="exam-course">${element.description}</div>
+          </div>
+        </div>
+
+        <div class="exam-details">
+          <div class="detail-item">
+            <i class="fas fa-calendar-alt"></i>
+            <div class="detail-text">
+              <div class="detail-label">Fecha límite</div>
+              <div class="detail-value">${formatDeadline(element.deadline)}</div>
+            </div>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-clock"></i>
+            <div class="detail-text">
+              <div class="detail-label">Duración</div>
+              <div class="detail-value">${element.duration} hora(s)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exam-stats">
+          <div class="stat-item">
+            <div class="stat-number">${totalPreguntas}</div>
+            <div class="stat-label">Preguntas</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">${totalPuntos}</div>
+            <div class="stat-label">Puntos</div>
+          </div>
+        </div>
+
+        <div class="time-remaining">
+          <i class="fas fa-hourglass-half"></i>
+          <span class="time-text">${remaining.text}</span>
+        </div>
+
+        <div class="exam-actions">
+          <a href="/examen?id=${element.id}" class="btn-start">
+            <i class="fas fa-play"></i> Iniciar Examen
+          </a>
+        </div>
+      `;
+
+      // Si ya venció, ocultar botón de iniciar examen
+      if (remaining.expired) {
+        card.querySelector(".exam-actions").style.display = "none";
+      }
+
+      contenedorExamenes.prepend(card);
+    }
+  } catch (error) {
+    console.error("Error al obtener los exámenes:", error.message);
+  }
+}
+
+
+        async function cargarExamenes() {
+    await obtenerPreguntas(); // esperamos a que se carguen los exámenes
+    const contenedorExamenes = document.querySelector(".exams-list");
+
+    if (contenedorExamenes.innerHTML === "") {
+        // Aquí agregas tu skeleton loader o mensaje de "No hay exámenes"
+        const mensaje = document.createElement("li");
+        mensaje.classList.add("message-no-exams")
+        mensaje.textContent = "No hay exámenes disponibles :c";
+        contenedorExamenes.appendChild(mensaje);
+    }
+}
+
+
+// actualizar cada minuto ⏳
+obtenerPreguntas();
+
+    </script>
+
+
+</body>
+
+</html>

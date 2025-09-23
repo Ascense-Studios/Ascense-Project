@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/faviconASCENSE.png" type="image/x-icon">
+  <title>ASCENSE | COMUNIDAD</title>
+    <script src="https://kit.fontawesome.com/6788e71a64.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/sidebar.css">
+  <!-- <link rel="stylesheet" href="../public/css/header.css"> -->
+  <style>
+    header {
+      margin: 0 auto;
+      margin-bottom: 20px;
+      background-color: #000000;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f0f0f;
+      margin: 0;
+      color: white;
+    }
+
+    body::selection {
+      background-color: #028f778a;
+      color: white;
+
+    }
+    #editor {
+      max-width: 790px;
+
+      height: 200px;
+      margin: 0 auto;
+      border: none;
+      /* border: 1px solid #cccccc38; */
+      background-color: rgb(39, 39, 39);
+      /* border-radius: 4px; */
+    }
+
+    /* Eliminar el borde del toolbar de Quill */
+    .ql-toolbar.ql-snow {
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    .ql-editor {
+
+      background-color: rgb(39, 39, 39);
+      color: white !important;
+    }
+    /* Estilos para el toolbar */
+    .toolbar {
+      color: white;
+      max-width: 790px;
+
+
+      display: flex;
+      margin: 0 auto;
+      margin-bottom: 2px;
+      background-color: rgb(39, 39, 39);
+      /* border-radius: 4px; */
+    }
+    .ql-color {
+    }
+
+    /* Estilos comentarios */
+    /* Diseño de comentario */
+.comentario {
+  animation: left-fade .5s ease-out;
+  max-width: 770px;
+  /* max-height: 300px; */
+  overflow: hidden;
+    background-color: #0a0a0a;
+    border: 1px solid #dddddd42;
+    border-radius: 10px;
+    padding: 15px 10px;
+    display: flex;
+    margin: 10px auto;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.comentario article {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.comentario:hover {
+  cursor: pointer;
+  transform: translate(0, -5px);
+}
+
+
+.usuario {
+  /* background-color: green; */
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.usuario img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: auto 5px;
+    /* background-color: red; */
+    
+}
+
+.usuario-info {
+  margin: 0 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.usuario-info h5 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.usuario-info span {
+    font-size: 12px;
+    color: #888;
+}
+
+.comentario-texto {
+    margin-top: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+}
+
+.comentario-texto p {
+  display: -webkit-box;
+  text-align: left;
+  -webkit-line-clamp: 3;         /* ← Cambia este número según cuántas líneas quieras */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 5px 0;
+}
+
+
+.comentario-botones {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.comentario-botones button {
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+.comentario-botones-1 button{
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.comentario-botones button:hover, .comentario-botones-1 button:hover {
+  cursor: pointer;
+  color: #929292;
+}
+
+/* comentario estrellas */
+.comentario-estrellas {
+  display: flex;
+  
+}
+
+.comentario-estrellas button {
+  background-color: transparent;
+  border: none;
+  color: gray;
+  width: 10px;
+  margin: 4px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.comentario-estrellas span i{
+  background-color: transparent;
+  border: none;
+  color: gray;
+  font-size: 15px;
+  background-color: transparent;
+}
+form {
+  animation: up-fade 0.7s ease-in-out;
+
+  /* background-color: red; */
+  max-width: 790px;
+  overflow: hidden;
+  background-color: #1f1f1f;
+    border: 1px solid #dddddd2d;
+
+
+  border-radius: 10px;
+  margin: 0 auto;
+}
+.comentario-enviar {
+  width: 100%;
+  margin: 2px auto;
+  border: 0;
+  color: white;
+        background-color: rgb(39, 39, 39);
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.comentario-enviar:hover {
+  background-color: #1a1a1a;
+}
+
+
+.ql-syntax::selection {
+  background-color: #028f778a;
+  color: white;
+}
+
+.usuario-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+}
+
+.comentario img {
+  border-radius: 5px;
+  max-width: 100%;
+}
+
+ @keyframes up-fade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+        }
+
+   @keyframes left-fade {
+      from {
+          opacity: 0;
+          transform: translateX(-20px);
+      }
+      to {
+          opacity: 1;
+          transform: translateX(0);
+      }
+            
+    }
+/* .comentario-estrellas span i:hover{
+  cursor: pointer;
+  color: #f1c40f;
+} */
+
+</style>
+</head>
+<body>
+  <!-- ======= SIDEBAR ======= -->
+    <aside class="sidebar">
+        <section class="header-sidebar">
+            <img src="./images/faviconASCENSE.png" alt="Logotipo de ascense">
+            <h1>ASCENSE</h1>
+        </section>  
+        <hr>
+        <nav>
+            <p>Principal</p>
+            <ul>
+                <li><a href="/" class="sidebar-option active"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                <li><a href="/comunidad" class="sidebar-option"><i class="fa-solid fa-envelope"></i> Mensajes</a></li>
+                <li><a href="/recursos" class="sidebar-option"><i class="fa-solid fa-box-open"></i> Recursos</a></li>
+                <li><a href="/cursos" class="sidebar-option "><i class="fa-solid fa-graduation-cap"></i> Cursos</a></li>
+                <li><a href="/editor" class="sidebar-option "><i class="fas fa-code"></i> Editor de codigo</a></li>
+            </ul>
+        </nav>
+        <hr>
+        <nav>
+            <p>Grado</p>
+            <ul>
+                <li><a href="#" class="sidebar-option"><i class="fa-solid fa-language"></i> Bilingüe</a></li>
+                <li><a href="#" class="sidebar-option"><i class="fa-solid fa-earth-americas"></i> General</a></li>
+                <li><a href="#" class="sidebar-option"><i class="fa-solid fa-laptop-code"></i> Sistemas C.</a></li>
+            </ul>
+        </nav>
+        <hr>
+        <nav>
+            <p>Cursos</p>
+            <ul>
+                <li><a href="#" class="sidebar-option"><i class="fa-brands fa-python"></i> Python</a></li>
+                <li><a href="#" class="sidebar-option"><i class="fa-brands fa-js"></i> JavaScript</a></li>
+                <li><a href="#" class="sidebar-option"><i class="fa-brands fa-html5"></i> HTML</a></li>
+                <li><a href="#" class="sidebar-option"><i class="fa-brands fa-css3-alt"></i> CSS</a></li>
+            </ul>
+        </nav>
+        
+        <hr>
+        <nav>
+            <p>Cuenta</p>
+            <ul>
+                <li><a href="/configuracion" class="sidebar-option"><i class="fa-solid fa-gear"></i> Configuracion</a></li>
+                <li class="perfil">
+                    <span class="perfil-user">S</span>
+                    <div class="">
+                        <span class="perfil-username">Manuel</span>
+                        <span class="perfil-arroba">manuel23</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+
+   <!-- Comentarios -->
+    <main class="comentarios">
+      <!-- HEADER -->
+      <header>
+        <section>
+            <h1 class="logo">ASCENSE</h1>
+            <!-- Icono menu -->
+            <button class="menu" hidden><i class="fa-solid fa-bars"></i></button>
+        </section>
+
+        <nav class="nav-content hidden-menu">
+            <ul class="nav-bar ">
+              <li><a class="nav-item" href="/" >Inicio</a></li>
+                <li><a class="nav-item" href="/examenes">Examenes</a></li>
+                <li><a class="nav-item" href="/recursos" >Recursos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Form -->
+     
+  <!-- Toolbar personalizado -->
+   <form action="/comentar" method="POST" onsubmit="prepararComentario()">
+        <div class="toolbar">
+      <!-- Agregar encabezados -->
+      <select name="" class="ql-header">
+        <option selected></option>ss
+        <option value="1"></option>
+        <option value="2"></option>
+        <option value="3"></option>
+      </select>
+      <button class="ql-bold"></button>
+      <button class="ql-italic"></button>
+      <button class="ql-link"></button>
+      <button class="ql-code-block"></button>
+      <button class="ql-image"></button>
+      <select class="ql-color"></select>
+      <button class="ql-list" value="ordered"></button>
+      <button class="ql-list" value="bullet"></button>
+    </div>
+    <div id="editor" style="height: 200px;"></div>
+
+    <textarea name="comentario" id="comentario" class="contenido" hidden></textarea>
+    <input type="text" name="usuario" value="Anonimo" hidden>
+    <button class="comentario-enviar">Enviar</button>
+
+    <!-- Editor -->
+  </form>
+
+      <!-- comentario -->
+      <section class="comentario">
+        <article>
+          <!-- Seccion 1 usuario -->
+          <div class="usuario">
+            <div class="usuario-img">
+              <img src="/images/manuel.png" alt="" hidden>
+              <span>C</span>
+            </div>
+            <div class="usuario-info">
+              <h5>Manuel balderas</h5>
+              <span>Hace 2 horas</span>
+            </div>
+          </div>
+          <!-- Seccion 2 estrellas -->
+          <div class="comentario-estrellas">
+            <span><i class="fa-solid fa-star"></i></span>
+            <span><i class="fa-solid fa-star"></i></span>
+            <span><i class="fa-solid fa-star"></i></span>
+            <span><i class="fa-solid fa-star"></i></span>
+            <span><i class="fa-solid fa-star"></i></span>
+          </div>
+        </article>
+        <!-- seccion 2 comentario y botones-->
+        <article class="comentario-texto">
+          <!-- Seccion comentario -->
+           <p class="comentario-parrafo">Muy buena compra, aunque el precio podría ser un poco mejor. El servicio al cliente fue excelente. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur placeat repellat assumenda eaque eveniet illo, quas laudantium sunt, nisi pariatur excepturi ipsum quae nulla voluptatibus, id tempore nihil saepe eligendi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo esse placeat, iusto ab animi unde neque numquam totam in rem minus molestias facilis consectetur distinctio ipsam error fugiat alias quia! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut eveniet voluptas amet, excepturi corrupti necessitatibus deserunt laborum labore nihil distinctio, alias porro quasi earum veritatis soluta commodi quo incidunt? Alias?</p>
+           <!-- Seccion botones -->
+            <div class="comentario-botones">
+              <div class="comentario-botones-1">
+                <button class="like"><i class="fa-solid fa-thumbs-up"></i> <span>0</span></button>
+                <button class="like"><i class="fa-solid fa-thumbs-down"></i> <span>0</span></button>
+                <button><i class="fa-solid fa-comment"></i> Responder</button>
+                <button><i class="fa-solid fa-flag"></i> <span>0</span></button>
+              </div>
+            </div>
+            
+            
+        </article>
+      </section>
+
+    </main>
+        
+
+  <!-- Scripts para que el editor funciones -->
+   
+ <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+        <script src="/JS/menu.js"></script>
+  <script>
+
+   
+    const quill = new Quill('#editor', {
+      modules: {
+        toolbar: '.toolbar'
+      },
+      theme: 'snow'
+    });
+
+    function prepararComentario() {
+      // Obtener el contenido del editor
+      const contenido = quill.root.innerHTML;
+      // Asignar el contenido al textarea oculto
+      document.querySelector('.contenido').value = contenido;
+    }
+
+    // Modo solo lectura
+    // quill.enable(false);
+
+
+    // Obtener los comentarios del servidor
+    // Obtener los comentarios del servidor
+fetch("/comunidad/mensajes")
+  .then(res => res.json())
+  .then(mensajes => {
+    console.log("Mensajes recibidos:", mensajes);
+
+    // Limpiar comentarios previos (si hay)
+    const contenedor = document.querySelector('.comentarios');
+    contenedor.innerHTML = "";
+
+    mensajes.forEach(m => {
+      console.log(m);
+      const comentario = document.createElement("section");
+      comentario.classList.add("comentario");
+      comentario.dataset.id = m.id;  // IMPORTANTE: almacenar id en dataset
+
+      comentario.innerHTML = `
+        <article>
+          <div class="usuario">
+            <div class="usuario-img">
+              ${m.usuario === "Anonimo" 
+                ? "" 
+                : `<img src="/images/${m.usuario}.png" alt="">`}
+              <span class="perfil-usuario">A</span>
+            </div>          
+            <div class="usuario-info">
+              <h5>${m.usuario}</h5>
+              <span>${new Date(m.fecha || m.date).toLocaleString()}</span>
+            </div>
+          </div>
+        </article>
+        <article class="comentario-texto">
+          <p class="comentario-parrafo">${m.comentario}</p>
+          <div class="comentario-botones">
+            <div class="comentario-botones-1">
+              <button class="like-button" data-tipo="like"><i class="fa-solid fa-thumbs-up"></i> <span>${m.likes || 0}</span></button>
+              <button class="like-button" data-tipo="dislike"><i class="fa-solid fa-thumbs-down"></i> <span>${m.dislikes || 0}</span></button>
+              <button><i class="fa-solid fa-comment"></i> Responder</button>
+              <button><i class="fa-solid fa-flag"></i> <span>0</span></button>
+            </div>
+          </div>
+        </article>
+      `;
+
+      contenedor.prepend(comentario);
+    });
+
+    // Añadir eventos a botones (delegación)
+    contenedor.querySelectorAll('.like-button').forEach(button => {
+      button.addEventListener('click', async (e) => {
+        const tipo = button.dataset.tipo; // 'like' o 'dislike'
+        const seccionComentario = button.closest('.comentario');
+        const id = seccionComentario.dataset.id;
+
+        try {
+          const res = await fetch(`/comentar/${id}/reaccion`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ tipo }),
+          });
+
+          const data = await res.json();
+          if (res.ok) {
+            // Actualizar contador visualmente con valor retornado
+            const span = button.querySelector('span');
+            if (tipo === 'like') {
+              span.textContent = data.comentario.likes;
+            } else if (tipo === 'dislike') {
+              span.textContent = data.comentario.dislikes;
+            }
+          } else {
+            console.error(data.error || 'Error al actualizar reacción');
+          }
+        } catch (err) {
+          console.error("Error en la petición:", err);
+        }
+      });
+    });
+
+  })
+  .catch(err => {
+    console.error("Error al obtener mensajes:", err);
+  });
+
+
+  // Darle like
+
+  const likeButton = document.querySelectorAll('.like');
+
+  likeButton.forEach(button => {
+    button.addEventListener('click', () => {
+      const span = button.querySelector('span');
+      let count = parseInt(span.textContent);
+      count++;
+      span.textContent = count;
+      button.style.color = '#3498db'; // Cambia el color del botón al hacer clic
+    });
+  });
+  </script>
+  <script src="/JS/sidebar.js"></script>
+</body>
+</html>
+
+
+<!-- 
+- La Mecánica y el Entorno
+- La Naturaleza de la Vida
+- Introducción a las Ciencias Sociales
+- Lógica
+- Elección Vocacional
+- Optativa II
+- Desarrollo Visual II
+- Análisis y Diseño de Sistemas de Información
+- Base de Datos II
+- Desarrollo Web II
+- Seguridad en Informática y Laboratorio I
+- Sistemas de Calidad
+-->
